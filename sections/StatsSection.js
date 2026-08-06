@@ -1,0 +1,2 @@
+const stats = [["20+", "Vehicles"], ["500+", "Happy clients"], ["24×7", "Customer support"], ["98%", "On-time delivery"]];
+export default function StatsSection() { return <section className="bg-navy"><div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-y divide-white/15 px-5 sm:grid-cols-4 sm:divide-y-0 sm:px-8">{stats.map(([number, label]) => <div className="py-8 text-center" key={label}><p className="text-3xl font-black text-orange">{number}</p><p className="mt-1 text-xs font-bold uppercase tracking-widest text-white">{label}</p></div>)}</div></section>; }

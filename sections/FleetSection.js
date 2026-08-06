@@ -1,0 +1,4 @@
+import FleetCard from "@/components/FleetCard";
+import SectionTitle from "@/components/SectionTitle";
+const fleet = [["8.2 FT", "Tata Intra", "1 ton", "Small & light shipments"], ["8.8 FT", "Tata Intra", "1.2 ton", "Medium & general cargo"], ["9.2 FT", "Ashok Leyland Dosth", "1.5 ton", "General cargo & retail goods"], ["10.8 FT", "Ashok Leyland Dosth", "2 ton", "Secure, weather-protected cargo"], ["12 FT", "Tata 407", "3 ton", "Heavy & bulky shipments"]];
+export default function FleetSection() { return <section id="fleet" className="bg-slate-50"><div className="section"><SectionTitle eyebrow="Our fleet" title="The right vehicle for the job." copy="A maintained fleet of commercial vehicles gives you practical options for every payload." /><div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">{fleet.map(([size, vehicle, payload, ideal]) => <FleetCard size={size} vehicle={vehicle} payload={payload} ideal={ideal} key={size} />)}</div></div></section>; }

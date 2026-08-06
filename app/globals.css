@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; }
+body { @apply bg-white text-slate-800 antialiased; }
+::selection { @apply bg-orange text-white; }
+.section { @apply mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:py-24; }
+.eyebrow { @apply text-sm font-extrabold uppercase tracking-[.18em] text-orange; }
+.heading { @apply mt-3 font-black tracking-tight text-navy; }
+.grid-pattern { background-image: linear-gradient(rgba(6,29,67,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(6,29,67,.05) 1px, transparent 1px); background-size: 34px 34px; }

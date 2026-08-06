@@ -1,0 +1,1 @@
+export default function SectionTitle({ eyebrow, title, copy, centered = false }) { return <div className={centered ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}><p className="eyebrow">{eyebrow}</p><h2 className="heading text-3xl sm:text-4xl">{title}</h2>{copy && <p className="mt-4 leading-7 text-slate-600">{copy}</p>}</div>; }
