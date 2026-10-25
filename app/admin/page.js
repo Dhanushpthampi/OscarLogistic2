@@ -18,8 +18,10 @@ import {
   QuestionMarkCircleIcon,
   ChatBubbleLeftRightIcon,
   MapPinIcon,
-  InformationCircleIcon
+  InformationCircleIcon,
+  PhotoIcon
 } from "@heroicons/react/24/outline";
+import Logo from "@/components/Logo";
 
 export default function AdminPage() {
   const [pin, setPin] = useState("");
@@ -127,6 +129,34 @@ export default function AdminPage() {
       }
     };
     reader.readAsText(file);
+  };
+
+  const handleLogoUpload = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const currentLogo = content?.logo || {
+        type: "image",
+        imageUrl: "",
+        text: "OSCAR",
+        tagline: "LOGISTICS",
+        badgeLetter: "O",
+        height: 42,
+        badgeColor: "#f59e0b",
+        badgeBg: "#071120",
+      };
+      setContent({
+        ...content,
+        logo: {
+          ...currentLogo,
+          type: currentLogo.type === "both" ? "both" : "image",
+          imageUrl: event.target.result,
+        },
+      });
+      setStatusMessage({ text: "Logo image loaded! Click 'Save Changes' to apply.", type: "success" });
+    };
+    reader.readAsDataURL(file);
   };
 
   const handleResetDefaults = async () => {
@@ -302,6 +332,7 @@ export default function AdminPage() {
           <p className="px-3 py-2 text-[11px] font-black uppercase tracking-wider text-slate-400">Content Sections</p>
           {[
             { id: "hero", label: "Hero & Banner", icon: SparklesIcon },
+            { id: "logo", label: "Logo & Branding", icon: PhotoIcon },
             { id: "company", label: "Company & Contact", icon: BuildingOffice2Icon },
             { id: "stats", label: "Stats & Counters", icon: CheckCircleIcon },
             { id: "services", label: "Services (FTL/PTL)", icon: GlobeAltIcon },
@@ -343,6 +374,234 @@ export default function AdminPage() {
 
         {/* Tab Content Canvas */}
         <main className="flex-1 bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+          {/* TAB: LOGO & BRANDING */}
+          {activeTab === "logo" && (
+            <div className="space-y-6">
+              <div>
+                <h2 className="text-lg font-black text-slate-900">Logo &amp; Brand Customization</h2>
+                <p className="text-xs text-slate-500">
+                  Upload your business logo, adjust its dimensions, or customize the sleek text emblem.
+                </p>
+              </div>
+
+              {/* Live Preview Box */}
+              <div className="p-6 rounded-2xl border border-slate-200 bg-slate-50 space-y-3">
+                <span className="text-[11px] font-black uppercase tracking-wider text-slate-700">
+                  Live Logo Preview
+                </span>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="p-4 rounded-xl bg-white border border-slate-200 flex flex-col items-center justify-center">
+                    <span className="text-[10px] text-slate-400 font-bold uppercase mb-2">Header (Light Mode)</span>
+                    <Logo logo={content.logo} company={content.company} variant="light" />
+                  </div>
+                  <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 flex flex-col items-center justify-center">
+                    <span className="text-[10px] text-slate-400 font-bold uppercase mb-2">Dark Surface</span>
+                    <Logo logo={content.logo} company={content.company} variant="dark" />
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid gap-5 sm:grid-cols-2">
+                {/* Logo Type Selector */}
+                <div className="sm:col-span-2">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                    Logo Display Mode
+                  </label>
+                  <div className="grid grid-cols-3 gap-3">
+                    {[
+                      { id: "text", label: "Sleek Emblem + Text" },
+                      { id: "image", label: "Uploaded Image Only" },
+                      { id: "both", label: "Image + Brand Text" },
+                    ].map((mode) => (
+                      <button
+                        key={mode.id}
+                        type="button"
+                        onClick={() =>
+                          setContent({
+                            ...content,
+                            logo: { ...(content.logo || {}), type: mode.id },
+                          })
+                        }
+                        className={`p-3 rounded-xl border text-xs font-bold transition text-center ${
+                          (content.logo?.type || "text") === mode.id
+                            ? "bg-slate-900 text-amber-400 border-slate-900 ring-2 ring-amber-500/50"
+                            : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
+                        }`}
+                      >
+                        {mode.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Logo Height Slider */}
+                <div className="sm:col-span-2 p-4 rounded-xl bg-slate-50 border border-slate-200">
+                  <div className="flex items-center justify-between mb-2">
+                    <label className="text-xs font-bold uppercase tracking-wider text-slate-700">
+                      Logo Height / Scale
+                    </label>
+                    <span className="text-xs font-mono font-black text-amber-600 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded">
+                      {content.logo?.height || 42} px
+                    </span>
+                  </div>
+                  <input
+                    type="range"
+                    min="24"
+                    max="80"
+                    step="2"
+                    value={content.logo?.height || 42}
+                    onChange={(e) =>
+                      setContent({
+                        ...content,
+                        logo: { ...(content.logo || {}), height: parseInt(e.target.value) },
+                      })
+                    }
+                    className="w-full accent-amber-500 cursor-pointer"
+                  />
+                  <div className="flex justify-between text-[10px] text-slate-400 mt-1">
+                    <span>Compact (24px)</span>
+                    <span>Standard (42px)</span>
+                    <span>Large (80px)</span>
+                  </div>
+                </div>
+
+                {/* Upload Image */}
+                <div className="sm:col-span-2 space-y-2">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
+                    Upload Logo File (PNG, SVG, JPG, WebP)
+                  </label>
+                  <div className="flex items-center gap-3">
+                    <label className="cursor-pointer inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold bg-slate-900 text-white hover:bg-slate-800 transition">
+                      <PhotoIcon className="h-4 w-4 text-amber-400" />
+                      <span>Select Logo from Computer</span>
+                      <input type="file" accept="image/*" onChange={handleLogoUpload} className="hidden" />
+                    </label>
+
+                    {content.logo?.imageUrl && (
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setContent({
+                            ...content,
+                            logo: { ...(content.logo || {}), imageUrl: "" },
+                          })
+                        }
+                        className="text-xs text-rose-500 hover:text-rose-700 font-semibold"
+                      >
+                        Remove Image
+                      </button>
+                    )}
+                  </div>
+                  <p className="text-[11px] text-slate-500">
+                    Works 100% free with zero cloud storage needed (embedded directly into site data).
+                  </p>
+                </div>
+
+                {/* Or Image URL */}
+                <div className="sm:col-span-2">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+                    Or Enter Public Image URL
+                  </label>
+                  <input
+                    type="text"
+                    value={content.logo?.imageUrl || ""}
+                    onChange={(e) =>
+                      setContent({
+                        ...content,
+                        logo: { ...(content.logo || {}), imageUrl: e.target.value },
+                      })
+                    }
+                    placeholder="https://example.com/logo.png"
+                    className="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm font-mono"
+                  />
+                </div>
+
+                {/* Brand Text Settings */}
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+                    Brand Name Text
+                  </label>
+                  <input
+                    type="text"
+                    value={content.logo?.text || "OSCAR"}
+                    onChange={(e) =>
+                      setContent({
+                        ...content,
+                        logo: { ...(content.logo || {}), text: e.target.value },
+                      })
+                    }
+                    className="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm font-bold"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+                    Brand Tagline / Subtitle
+                  </label>
+                  <input
+                    type="text"
+                    value={content.logo?.tagline || "LOGISTICS"}
+                    onChange={(e) =>
+                      setContent({
+                        ...content,
+                        logo: { ...(content.logo || {}), tagline: e.target.value },
+                      })
+                    }
+                    className="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm font-bold"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+                    Badge Initial Letter
+                  </label>
+                  <input
+                    type="text"
+                    maxLength={2}
+                    value={content.logo?.badgeLetter || "O"}
+                    onChange={(e) =>
+                      setContent({
+                        ...content,
+                        logo: { ...(content.logo || {}), badgeLetter: e.target.value },
+                      })
+                    }
+                    className="w-full px-3.5 py-2.5 border border-slate-300 rounded-xl text-sm font-black text-center uppercase"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+                    Badge Accent Color
+                  </label>
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="color"
+                      value={content.logo?.badgeColor || "#f59e0b"}
+                      onChange={(e) =>
+                        setContent({
+                          ...content,
+                          logo: { ...(content.logo || {}), badgeColor: e.target.value },
+                        })
+                      }
+                      className="h-10 w-12 rounded border border-slate-300 cursor-pointer"
+                    />
+                    <input
+                      type="text"
+                      value={content.logo?.badgeColor || "#f59e0b"}
+                      onChange={(e) =>
+                        setContent({
+                          ...content,
+                          logo: { ...(content.logo || {}), badgeColor: e.target.value },
+                        })
+                      }
+                      className="w-full px-3.5 py-2 border border-slate-300 rounded-xl text-xs font-mono"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* TAB: HERO */}
           {activeTab === "hero" && (
             <div className="space-y-6">
@@ -667,7 +926,7 @@ export default function AdminPage() {
                       title: "New Logistics Service",
                       badge: "New",
                       shortDesc: "Description of the new freight offering.",
-                      features: ["Point to point dispatch", "24/7 support", "GPS tracking"],
+                      features: ["Point to point dispatch", "24/7 support", "Dedicated vehicle"],
                     };
                     setContent({ ...content, services: [...content.services, newService] });
                   }}
@@ -946,7 +1205,7 @@ export default function AdminPage() {
             <div className="space-y-6">
               <div>
                 <h2 className="text-lg font-black text-slate-900">Why Choose Oscar</h2>
-                <p className="text-xs text-slate-500">Highlight unique strengths (GPS, verified drivers, transparent rates).</p>
+                <p className="text-xs text-slate-500">Highlight unique strengths (direct transit, verified drivers, transparent rates).</p>
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2">

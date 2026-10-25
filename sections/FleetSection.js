@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { TruckIcon, CheckBadgeIcon, ShieldCheckIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
+import { ArrowRightIcon } from "@heroicons/react/24/outline";
 
 export default function FleetSection({ content }) {
   const [selectedTag, setSelectedTag] = useState("all");
@@ -11,166 +12,165 @@ export default function FleetSection({ content }) {
       id: "intra-82",
       size: "8.2 FT Deck",
       vehicle: "Tata Intra V30 / V50",
-      payload: "1.0 - 1.2 Ton",
+      payload: "1.0 – 1.2 Ton",
       volume: "180 cu.ft",
-      ideal: "City retail distribution, fast FMCG delivery, parcel drop-offs",
+      ideal: "City retail distribution, fast FMCG delivery across urban routes.",
       tag: "City Express",
+      image: "/vehicles/intra-v30.jpg",
     },
     {
       id: "intra-88",
       size: "8.8 FT Deck",
       vehicle: "Tata Intra Long Wheelbase",
-      payload: "1.3 - 1.5 Ton",
+      payload: "1.3 – 1.5 Ton",
       volume: "220 cu.ft",
-      ideal: "General cargo, furniture, wholesale appliances & industrial boxes",
+      ideal: "General cargo, furniture, wholesale appliances & B2B goods.",
       tag: "Most Versatile",
+      image: "/vehicles/intra-lwb.jpg",
     },
     {
       id: "dosth-92",
       size: "9.2 FT High-Deck",
       vehicle: "Ashok Leyland Dosth +",
-      payload: "1.5 - 1.8 Ton",
+      payload: "1.5 – 1.8 Ton",
       volume: "260 cu.ft",
-      ideal: "High volume packages, textile cartons, consumer electronics",
+      ideal: "High volume packages, textile cartons, electronics & grains.",
       tag: "High Torque",
+      image: "/vehicles/dosth-highdeck.jpg",
     },
     {
       id: "dosth-108",
-      size: "10.8 FT Closed Container",
-      vehicle: "Ashok Leyland Dosth Container",
+      size: "10.8 FT Container",
+      vehicle: "Ashok Leyland Dosth",
       payload: "2.0 Ton",
       volume: "320 cu.ft",
-      ideal: "Weather-sealed protection for FMCG, pharmaceuticals & e-commerce",
+      ideal: "Weather-sealed protection for FMCG, e-commerce & sensitive goods.",
       tag: "Weatherproof",
+      image: "/vehicles/dosth-container.jpg",
     },
     {
       id: "tata-407",
       size: "12.0 FT Heavy Deck",
       vehicle: "Tata 407 Gold LCV",
-      payload: "3.0 - 3.5 Ton",
+      payload: "3.0 – 3.5 Ton",
       volume: "480 cu.ft",
-      ideal: "Heavy machinery parts, construction hardware, agricultural loads",
+      ideal: "Heavy machinery parts, hardware, construction materials & bulk loads.",
       tag: "Heavy Hauler",
+      image: "/vehicles/tata-407.jpg",
     },
   ];
 
   const company = content?.company || { whatsappNumber: "918590411061" };
 
-  const tags = ["all", "City Express", "Most Versatile", "High Torque", "Weatherproof", "Heavy Hauler"];
-
+  const tags = ["all", ...fleet.map((f) => f.tag)];
   const filteredFleet =
-    selectedTag === "all" ? fleet : fleet.filter((truck) => truck.tag === selectedTag);
+    selectedTag === "all" ? fleet : fleet.filter((t) => t.tag === selectedTag);
 
   return (
-    <section id="fleet" className="py-16 lg:py-24 bg-slate-50 relative border-t border-slate-200/80">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10">
-          <span className="text-xs font-black uppercase tracking-[0.2em] text-orange-600">
-            Commercial Fleet Specifications
-          </span>
-          <h2 className="mt-2 text-3xl sm:text-4xl font-black text-navy-900 tracking-tight">
-            The Right Commercial Vehicle for <span className="text-orange-600">Every Payload</span>
+    <section id="fleet" className="py-24 bg-white relative overflow-hidden">
+      <div className="absolute inset-0 grid-pattern opacity-50 pointer-events-none" />
+
+      <div className="section-container relative z-10">
+        {/* Header */}
+        <div className="max-w-2xl mx-auto text-center mb-12">
+          <p className="eyebrow mb-3">Commercial Fleet</p>
+          <h2 className="section-title">
+            Vehicles for{" "}
+            <span className="text-gradient">Every Payload</span>
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
-            Our company-owned and maintained commercial vehicles range from nimble urban mini-trucks to high-capacity 3.5-ton transporters.
+          <p className="section-subtitle mt-4">
+            A diverse fleet of LCVs and trucks — pick the right size for your cargo.
           </p>
         </div>
 
-        {/* Filter Pills */}
+        {/* Filter pills */}
         <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
           {tags.map((t) => (
             <button
               key={t}
               onClick={() => setSelectedTag(t)}
-              className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition capitalize ${
+              className={`px-4 py-2 rounded-full text-xs font-semibold transition-all ${
                 selectedTag === t
-                  ? "bg-navy-900 text-white shadow-sm"
-                  : "bg-white text-slate-600 hover:bg-slate-200 border border-slate-200"
+                  ? "bg-orange-500 text-white shadow-lg shadow-orange-500/25 scale-105"
+                  : "bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200"
               }`}
             >
-              {t === "all" ? "All Fleet Vehicles" : t}
+              {t === "all" ? "All Vehicles" : t}
             </button>
           ))}
         </div>
 
-        {/* Fleet Cards Grid */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+        {/* Fleet Grid */}
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {filteredFleet.map((truck) => {
             const whatsappMsg = encodeURIComponent(
-              `Hello Oscar Logistics! I would like to book a ${truck.vehicle} (${truck.size}, payload ${truck.payload}).`
+              `Hello Oscar Logistics! I want to book a ${truck.vehicle} (${truck.size}, ${truck.payload}).`
             );
             return (
               <div
-                key={truck.id || truck.size}
-                className="group flex flex-col justify-between rounded-3xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-xl hover:border-orange-500/40 transition-all duration-300"
+                key={truck.id}
+                className="group bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-orange-200 hover:-translate-y-2 transition-all duration-300 overflow-hidden flex flex-col"
               >
-                <div>
-                  {/* Card Header */}
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-xs font-black uppercase tracking-wider text-orange-600 bg-orange-50 px-2.5 py-1 rounded-full">
+                {/* Vehicle Image */}
+                <div className="relative h-48 bg-gradient-to-br from-slate-50 to-slate-100 overflow-hidden">
+                  {truck.image ? (
+                    <Image
+                      src={truck.image}
+                      alt={truck.vehicle}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  ) : (
+                    <div className="flex items-center justify-center h-full">
+                      <span className="text-slate-300 text-sm font-medium">{truck.vehicle}</span>
+                    </div>
+                  )}
+                  {/* Overlay badges */}
+                  <div className="absolute top-3 left-3">
+                    <span className="badge badge-orange text-[10px] backdrop-blur-sm bg-white/90 border-orange-200">
                       {truck.size}
                     </span>
-                    {truck.tag && (
-                      <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">
-                        {truck.tag}
-                      </span>
-                    )}
                   </div>
-
-                  {/* Truck Illustration Placeholder / Icon Graphic */}
-                  <div className="my-3 py-6 rounded-2xl bg-slate-100 flex flex-col items-center justify-center group-hover:bg-slate-900 transition-colors duration-300">
-                    <TruckIcon className="h-16 w-16 text-navy-900 group-hover:text-amber-400 transition-colors duration-300" />
-                    <span className="text-[11px] font-mono font-bold text-slate-500 group-hover:text-slate-300 mt-2 transition-colors">
-                      {truck.volume || "Standard Volume"}
+                  <div className="absolute top-3 right-3">
+                    <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-900/80 text-white backdrop-blur-sm">
+                      {truck.tag}
                     </span>
-                  </div>
-
-                  {/* Model & Specs */}
-                  <h3 className="text-base font-black text-navy-900 tracking-tight mt-2">
-                    {truck.vehicle}
-                  </h3>
-
-                  <div className="mt-3 p-2.5 rounded-xl bg-orange-50/70 border border-orange-200/50 flex items-center justify-between text-xs font-bold">
-                    <span className="text-slate-600">Payload Capacity</span>
-                    <span className="text-orange-700 font-black">{truck.payload}</span>
-                  </div>
-
-                  <div className="mt-3 text-xs text-slate-600 leading-relaxed">
-                    <span className="font-bold text-slate-700 block text-[11px] uppercase tracking-wider mb-0.5">
-                      Recommended Cargo:
-                    </span>
-                    {truck.ideal}
                   </div>
                 </div>
 
-                {/* Book Action */}
-                <div className="mt-6 pt-4 border-t border-slate-100">
+                {/* Card body */}
+                <div className="p-5 flex flex-col flex-1">
+                  <div className="flex items-start justify-between mb-2">
+                    <h3 className="text-sm font-bold text-slate-900 group-hover:text-orange-600 transition-colors">
+                      {truck.vehicle}
+                    </h3>
+                    <span className="text-xs text-slate-400 font-mono shrink-0 ml-2">{truck.payload}</span>
+                  </div>
+
+                  <p className="text-xs text-slate-500 leading-relaxed flex-1">
+                    {truck.ideal}
+                  </p>
+
+                  {/* Specs row */}
+                  <div className="mt-3 pt-3 border-t border-slate-100 flex items-center gap-4 text-[11px] text-slate-500">
+                    <span>Vol: {truck.volume}</span>
+                    <span>Payload: {truck.payload}</span>
+                  </div>
+
                   <a
                     href={`https://wa.me/${company.whatsappNumber}?text=${whatsappMsg}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl font-bold text-xs bg-navy-900 hover:bg-orange-600 text-white transition-colors"
+                    className="mt-4 w-full flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-bold bg-slate-100 hover:bg-orange-500 hover:text-white text-slate-700 transition-all group-hover:bg-orange-500 group-hover:text-white"
                   >
-                    <span>Book This Vehicle</span>
+                    Book This Truck
+                    <ArrowRightIcon className="h-3 w-3" />
                   </a>
                 </div>
               </div>
             );
           })}
-        </div>
-
-        {/* Fleet Hygiene Guarantee */}
-        <div className="mt-12 p-6 rounded-2xl bg-white border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-semibold text-slate-700">
-          <div className="flex items-center gap-3">
-            <ShieldCheckIcon className="h-6 w-6 text-emerald-500 shrink-0" />
-            <span>
-              <strong>100% Verified Fleet:</strong> All vehicles carry valid RTO commercial fitness certificates, active insurance, and factory-fitted telematics.
-            </span>
-          </div>
-          <span className="text-orange-600 font-bold whitespace-nowrap">
-            Monthly Preventative Maintenance Audits
-          </span>
         </div>
       </div>
     </section>

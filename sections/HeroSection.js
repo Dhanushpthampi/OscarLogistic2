@@ -1,184 +1,207 @@
+"use client";
+
 import {
   ArrowRightIcon,
-  CheckCircleIcon,
   PhoneIcon,
   TruckIcon,
   MapPinIcon,
   ShieldCheckIcon,
+  BoltIcon,
   SignalIcon,
+  ClockIcon,
+  BanknotesIcon,
 } from "@heroicons/react/24/solid";
+
+const TRUST_BADGES = [
+  { Icon: TruckIcon, label: "Direct Express" },
+  { Icon: ClockIcon, label: "60-min Dispatch" },
+  { Icon: ShieldCheckIcon, label: "Monsoon Safe" },
+  { Icon: BanknotesIcon, label: "Zero Hidden Fees" },
+];
 
 export default function HeroSection({ content }) {
   const hero = content?.hero || {
-    eyebrow: "Kerala's Trusted Freight Network",
-    headline: "Reliable Logistics That Keep",
-    headlineHighlight: "Kerala Moving Fast.",
+    eyebrow: "Kerala's Modern Freight Network",
+    headline: "Logistics That Move",
+    headlineHighlight: "Kerala Forward.",
     description:
-      "From express parcel delivery to dedicated full truckloads, Oscar Logistics delivers precision, GPS-tracked freight handling across all 14 districts of Kerala—on time, every time.",
-    bannerPill: "⚡ 24×7 Operations • Live GPS Tracking • 100% Safe Handling",
-    activeCorridorText: "Kochi ➔ Kozhikode ➔ Trivandrum Express Corridors Active",
-    ctaQuoteText: "Calculate Rate & Book",
-    ctaCallText: "Call Dispatch Desk",
+      "Direct commercial goods transport, FTL, PTL & express cargo across all 14 districts of Kerala. On time, every time.",
   };
 
   const company = content?.company || {
     phonePrimary: "+918590411061",
+    whatsappNumber: "918590411061",
     activeTrucks: "25+",
-    citiesCovered: "14 Districts",
   };
 
+  const stats = [
+    { value: "25+", label: "Trucks Active" },
+    { value: "14", label: "Districts" },
+    { value: "99%", label: "On-Time" },
+    { value: "5 yrs", label: "Experience" },
+  ];
+
   return (
-    <section id="top" className="relative overflow-hidden bg-navy-900 text-white pt-10 pb-16 lg:pt-16 lg:pb-24">
-      {/* Background glow effects & pattern */}
-      <div className="absolute inset-0 bg-navy-pattern opacity-95 pointer-events-none" />
-      <div className="absolute top-1/4 -left-48 w-96 h-96 bg-orange-600/15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+    <section
+      id="top"
+      className="relative min-h-screen flex items-center overflow-hidden pt-20 pb-16 bg-white"
+    >
+      {/* Grid background */}
+      <div className="absolute inset-0 grid-pattern opacity-100 pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid items-center gap-12 lg:grid-cols-12">
-          {/* Left Hero Content (7 cols) */}
-          <div className="lg:col-span-7 space-y-6">
-            {/* Announcement Pill */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-800/90 border border-slate-700/80 text-xs font-bold text-amber-400 shadow-sm">
-              <span className="flex h-2 w-2 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-              </span>
-              <span>{hero.bannerPill}</span>
-            </div>
+      {/* Warm gradient blobs */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-gradient-to-br from-orange-100 via-amber-50 to-transparent rounded-full blur-[120px] pointer-events-none animate-glow" />
+      <div className="absolute -top-20 right-0 w-[400px] h-[400px] bg-orange-50 rounded-full blur-[100px] pointer-events-none" />
 
-            {/* Main Headline */}
-            <div>
-              <p className="text-xs font-black uppercase tracking-[0.22em] text-orange-500 mb-2">
-                {hero.eyebrow}
-              </p>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.05]">
-                {hero.headline} <span className="text-orange-500 underline decoration-orange-500/30">{hero.headlineHighlight}</span>
+      <div className="section-container relative z-10 w-full">
+        <div className="grid gap-16 lg:grid-cols-2 items-center">
+
+          {/* ── Left Column ── */}
+          <div className="space-y-8">
+            {/* Headline */}
+            <div className="space-y-2 animate-fade-up delay-100">
+              <p className="eyebrow">{hero.eyebrow}</p>
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight text-slate-900 leading-[1.0]">
+                {hero.headline}{" "}
+                <span className="text-gradient">{hero.headlineHighlight}</span>
               </h1>
             </div>
 
-            {/* Subtitle */}
-            <p className="max-w-xl text-base sm:text-lg leading-relaxed text-slate-300">
+            {/* Description */}
+            <p className="text-lg text-slate-500 leading-relaxed max-w-lg animate-fade-up delay-200">
               {hero.description}
             </p>
 
-            {/* CTAs */}
-            <div className="pt-2 flex flex-col sm:flex-row gap-3 sm:items-center">
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-3 animate-fade-up delay-300">
               <a
-                href="#calculator"
-                className="inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl font-black text-sm bg-orange-600 hover:bg-orange-500 text-white shadow-lg shadow-orange-950/40 transition transform hover:-translate-y-0.5"
+                href="#contact"
+                className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl font-bold text-sm bg-orange-500 hover:bg-orange-600 text-white shadow-xl shadow-orange-500/30 transition-all hover:scale-105 hover:shadow-orange-500/50"
               >
-                <span>{hero.ctaQuoteText}</span>
+                Get Instant Quote
                 <ArrowRightIcon className="h-4 w-4" />
               </a>
-
               <a
                 href={`tel:${company.phonePrimary}`}
-                className="inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl font-extrabold text-sm border-2 border-slate-700 bg-slate-800/80 hover:bg-slate-700/80 text-white transition transform hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl font-bold text-sm bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 shadow-sm transition-all hover:scale-105 hover:border-orange-300"
               >
-                <PhoneIcon className="h-4 w-4 text-orange-400" />
-                <span>{hero.ctaCallText}: {company.phonePrimary}</span>
+                <PhoneIcon className="h-4 w-4 text-orange-500" />
+                Call Dispatch
               </a>
             </div>
 
-            {/* Trust checkmarks */}
-            <div className="pt-4 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-bold text-slate-300 border-t border-slate-800/80">
-              <div className="flex items-center gap-2">
-                <CheckCircleIcon className="h-4 w-4 text-emerald-400 shrink-0" />
-                <span>100% Kerala Coverage</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircleIcon className="h-4 w-4 text-emerald-400 shrink-0" />
-                <span>Live GPS Tracking</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircleIcon className="h-4 w-4 text-emerald-400 shrink-0" />
-                <span>Zero Hidden Fees</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircleIcon className="h-4 w-4 text-emerald-400 shrink-0" />
-                <span>Monsoon Protected</span>
-              </div>
+            {/* Trust badges */}
+            <div className="flex flex-wrap gap-2 animate-fade-up delay-400">
+              {TRUST_BADGES.map((b) => (
+                <span key={b.label} className="badge badge-slate text-xs">
+                  <b.Icon className="h-3.5 w-3.5 text-slate-500" />
+                  {b.label}
+                </span>
+              ))}
             </div>
           </div>
 
-          {/* Right Hero Visual Card (5 cols) - Telematics / Live Radar Simulator */}
-          <div className="lg:col-span-5 relative">
-            <div className="relative mx-auto max-w-md lg:max-w-none">
-              {/* Card Container */}
-              <div className="rounded-3xl border border-slate-700/80 bg-slate-950/90 backdrop-blur-xl p-6 sm:p-7 shadow-2xl relative overflow-hidden">
-                {/* Header */}
-                <div className="flex items-center justify-between pb-4 border-b border-slate-800">
-                  <div className="flex items-center gap-2.5">
-                    <span className="h-3 w-3 rounded-full bg-emerald-500 animate-ping" />
-                    <span className="font-mono text-xs font-bold tracking-wider text-emerald-400 uppercase">
-                      Dispatch Telematics Active
-                    </span>
-                  </div>
-                  <SignalIcon className="h-4 w-4 text-slate-400" />
-                </div>
+          {/* ── Right Column: Visual HUD Card ── */}
+          <div className="relative animate-slide-right delay-200">
+            {/* Floating decorative ring */}
+            <div className="absolute -inset-8 rounded-3xl border border-dashed border-orange-200/60 animate-spin-slow pointer-events-none" />
 
-                {/* Live Route Milestone */}
-                <div className="mt-5 p-4 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-3">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="font-mono text-slate-400">VEHICLE #KL-07-CD-4110</span>
-                    <span className="px-2 py-0.5 rounded text-[10px] font-black bg-orange-500/20 text-orange-400 uppercase">
-                      On Transit
-                    </span>
-                  </div>
+            <div className="relative bg-white rounded-3xl shadow-2xl shadow-slate-200/80 border border-slate-100 p-6 space-y-5 animate-float">
+              {/* Beam shimmer */}
+              <div className="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none">
+                <div className="absolute top-0 left-0 h-[2px] w-24 bg-gradient-to-r from-transparent via-orange-500 to-transparent animate-beam" />
+              </div>
 
-                  <div className="flex items-center justify-between text-sm font-bold text-white pt-1">
-                    <div className="flex items-center gap-1.5">
-                      <MapPinIcon className="h-4 w-4 text-emerald-400" />
-                      <span>Kochi Hub</span>
+              {/* Top badge */}
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold text-slate-700">Corridor Transit</span>
+                <span className="text-[10px] text-slate-400 font-mono">KL-07-TR-4110</span>
+              </div>
+
+              {/* Route visualization */}
+              <div className="bg-gradient-to-br from-slate-50 to-orange-50/30 rounded-2xl p-5 border border-slate-100">
+                <div className="flex items-center justify-between text-sm font-bold text-slate-800 mb-4">
+                  <div className="flex items-center gap-2">
+                    <div className="h-8 w-8 rounded-xl bg-emerald-100 flex items-center justify-center">
+                      <MapPinIcon className="h-4 w-4 text-emerald-600" />
                     </div>
-                    <div className="flex items-center gap-1 text-slate-500 text-xs">
-                      <span className="h-0.5 w-6 bg-orange-500"></span>
-                      <TruckIcon className="h-4 w-4 text-orange-500 animate-bounce" />
-                      <span className="h-0.5 w-6 bg-slate-700"></span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <MapPinIcon className="h-4 w-4 text-amber-400" />
-                      <span>Kozhikode</span>
+                    <div>
+                      <p className="text-xs text-slate-500 font-normal">Origin</p>
+                      <p>Kochi Hub</p>
                     </div>
                   </div>
-
-                  {/* Progress bar */}
-                  <div className="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
-                    <div className="bg-gradient-to-r from-orange-600 to-amber-400 h-2 rounded-full w-2/3"></div>
+                  <div className="flex-1 mx-4 relative">
+                    <div className="h-1 bg-slate-200 rounded-full overflow-hidden">
+                      <div className="h-1 bg-gradient-to-r from-orange-500 to-amber-400 rounded-full w-3/5 relative">
+                        <div className="absolute right-0 -top-1 w-2 h-2 bg-orange-500 rounded-full shadow-lg shadow-orange-400/50" />
+                      </div>
+                    </div>
+                    <div className="absolute -top-5 left-3/5 -translate-x-1/2">
+                      <TruckIcon className="h-4 w-4 text-orange-500 animate-truck" />
+                    </div>
                   </div>
-
-                  <div className="flex justify-between text-[11px] font-mono text-slate-400">
-                    <span>Speed: 52 km/h</span>
-                    <span>Remaining: 58 km</span>
-                    <span className="text-emerald-400 font-bold">ETA: 1h 10m</span>
-                  </div>
-                </div>
-
-                {/* Fleet Overview Metrics */}
-                <div className="mt-5 grid grid-cols-3 gap-3 text-center">
-                  <div className="p-3 rounded-xl bg-slate-900/70 border border-slate-800">
-                    <span className="block text-xl font-black text-white">{company.activeTrucks}</span>
-                    <span className="block text-[10px] uppercase font-bold text-slate-400 mt-0.5">Active Fleet</span>
-                  </div>
-                  <div className="p-3 rounded-xl bg-slate-900/70 border border-slate-800">
-                    <span className="block text-xl font-black text-orange-400">100%</span>
-                    <span className="block text-[10px] uppercase font-bold text-slate-400 mt-0.5">GPS Linked</span>
-                  </div>
-                  <div className="p-3 rounded-xl bg-slate-900/70 border border-slate-800">
-                    <span className="block text-xl font-black text-amber-400">14/14</span>
-                    <span className="block text-[10px] uppercase font-bold text-slate-400 mt-0.5">Districts</span>
+                  <div className="flex items-center gap-2">
+                    <div className="h-8 w-8 rounded-xl bg-orange-100 flex items-center justify-center">
+                      <MapPinIcon className="h-4 w-4 text-orange-600" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-slate-500 font-normal">Destination</p>
+                      <p>Kozhikode</p>
+                    </div>
                   </div>
                 </div>
 
-                {/* Quick corridor marquee note */}
-                <div className="mt-5 pt-4 border-t border-slate-800/80 flex items-center gap-2 text-xs text-slate-400">
-                  <ShieldCheckIcon className="h-4 w-4 text-orange-500 shrink-0" />
-                  <span className="truncate">{hero.activeCorridorText}</span>
+                {/* Telemetry readouts */}
+                <div className="grid grid-cols-3 gap-3 pt-3 border-t border-slate-200/80">
+                  {[
+                    { label: "Speed", value: "54 km/h", color: "text-slate-900" },
+                    { label: "Distance", value: "180 km", color: "text-slate-900" },
+                    { label: "ETA", value: "1h 15m", color: "text-emerald-600" },
+                  ].map((item) => (
+                    <div key={item.label} className="text-center">
+                      <p className="text-[10px] text-slate-400 font-mono uppercase">{item.label}</p>
+                      <p className={`text-sm font-bold font-mono ${item.color}`}>{item.value}</p>
+                    </div>
+                  ))}
                 </div>
+              </div>
+
+              {/* Stats Row */}
+              <div className="grid grid-cols-4 gap-3">
+                {stats.map((s) => (
+                  <div key={s.label} className="text-center p-3 rounded-xl bg-slate-50 border border-slate-100">
+                    <p className="text-lg font-black text-orange-600">{s.value}</p>
+                    <p className="text-[9px] text-slate-500 uppercase font-bold tracking-wide">{s.label}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Trust row */}
+              <div className="flex items-center justify-between text-xs text-slate-500 pt-1 border-t border-slate-100">
+                <span className="flex items-center gap-1.5">
+                  <ShieldCheckIcon className="h-4 w-4 text-emerald-500" />
+                  Zero Damage Guarantee
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <BoltIcon className="h-4 w-4 text-orange-500" />
+                  Express Corridors
+                </span>
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="mt-20 flex justify-center">
+          <a
+            href="#services"
+            className="flex flex-col items-center gap-2 text-xs text-slate-400 hover:text-orange-500 transition group"
+          >
+            <span>Explore Services</span>
+            <div className="w-5 h-8 rounded-full border-2 border-slate-300 group-hover:border-orange-400 flex justify-center pt-1.5 transition">
+              <div className="w-1 h-1.5 bg-slate-400 group-hover:bg-orange-500 rounded-full animate-bounce transition" />
+            </div>
+          </a>
         </div>
       </div>
     </section>

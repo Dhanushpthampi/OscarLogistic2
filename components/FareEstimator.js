@@ -11,7 +11,6 @@ import {
   ChatBubbleLeftEllipsisIcon
 } from "@heroicons/react/24/solid";
 
-// Kerala district coordinates & estimated road distances matrix (approx highway km from Kochi hub)
 const DISTRICT_DISTANCES = {
   "Ernakulam (Kochi)": 0,
   "Thrissur": 75,
@@ -36,7 +35,7 @@ const VEHICLES = [
     baseRate: 900,
     perKm: 28,
     speedAvg: 40,
-    idealFor: "City distribution, retail boxes, FMCG",
+    idealFor: "City retail, fast FMCG",
   },
   {
     name: "Ashok Leyland Dosth +",
@@ -44,7 +43,7 @@ const VEHICLES = [
     baseRate: 1400,
     perKm: 34,
     speedAvg: 45,
-    idealFor: "Heavy retail pallets, industrial goods",
+    idealFor: "General cargo, wholesale",
   },
   {
     name: "Tata 407 Heavy LCV",
@@ -52,7 +51,7 @@ const VEHICLES = [
     baseRate: 2200,
     perKm: 46,
     speedAvg: 42,
-    idealFor: "Bulk wholesale, machinery, full loads",
+    idealFor: "Heavy bulk, machinery",
   },
 ];
 
@@ -64,12 +63,10 @@ export default function FareEstimator({ content }) {
   const districtsList = Object.keys(DISTRICT_DISTANCES);
   const company = content?.company || { whatsappNumber: "918590411061" };
 
-  // Calculate approximate road distance between two districts
   const getDistanceKm = (from, to) => {
-    if (from === to) return 30; // local intra-city
+    if (from === to) return 30;
     const dist1 = DISTRICT_DISTANCES[from] || 50;
     const dist2 = DISTRICT_DISTANCES[to] || 50;
-    // Approximation based on Kerala linear geography (North-South highway corridor)
     const diff = Math.abs(dist1 - dist2);
     return Math.max(diff, 40);
   };
@@ -77,61 +74,56 @@ export default function FareEstimator({ content }) {
   const distanceKm = getDistanceKm(fromDistrict, toDistrict);
   const selectedVehicle = VEHICLES[vehicleIdx];
 
-  // Estimated tariff range (approximate reference)
   const estimatedCost = Math.round(selectedVehicle.baseRate + distanceKm * selectedVehicle.perKm);
   const minCost = Math.round(estimatedCost * 0.95);
   const maxCost = Math.round(estimatedCost * 1.1);
 
-  // Estimated transit time
   const estHours = (distanceKm / selectedVehicle.speedAvg).toFixed(1);
   const turnaroundText =
     distanceKm <= 90
-      ? "2-3 Hours (Express Same Day)"
+      ? "2-3 Hours (Express)"
       : distanceKm <= 190
-      ? "4-6 Hours (Same Day Delivery)"
-      : "Next Morning / Scheduled Overnight";
+      ? "4-6 Hours (Same Day)"
+      : "Next Morning Delivery";
 
   const whatsappMessage = encodeURIComponent(
-    `Hello Oscar Logistics! I would like a quote for:\n• Pickup: ${fromDistrict}\n• Delivery: ${toDistrict}\n• Est. Distance: ${distanceKm} km\n• Vehicle: ${selectedVehicle.name} (${selectedVehicle.payload})\n• Est. Budget: ₹${minCost.toLocaleString()} - ₹${maxCost.toLocaleString()}\nPlease confirm availability and exact pricing.`
+    `Hello Oscar Logistics! I would like a quote for:\n• Pickup: ${fromDistrict}\n• Delivery: ${toDistrict}\n• Distance: ~${distanceKm} km\n• Vehicle: ${selectedVehicle.name} (${selectedVehicle.payload})\n• Estimated Budget: ₹${minCost.toLocaleString()} - ₹${maxCost.toLocaleString()}\nPlease confirm availability.`
   );
 
   return (
-    <section id="calculator" className="relative py-12 lg:py-16 bg-slate-900 text-white overflow-hidden">
-      {/* Background patterns */}
-      <div className="absolute inset-0 bg-navy-pattern opacity-90 pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-600/20 text-orange-400 text-xs font-black tracking-widest uppercase mb-3 border border-orange-500/30">
-            <CalculatorIcon className="h-4 w-4" /> Instant Route &amp; Rate Estimator
+    <section id="calculator" className="py-20 bg-slate-50 text-slate-900 relative overflow-hidden">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 border border-orange-200 text-orange-800 text-xs font-bold uppercase tracking-wider mb-2">
+            <CalculatorIcon className="h-3.5 w-3.5 text-orange-600" /> Instant Rate Tool
           </div>
-          <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-white">
-            Plan Your Kerala Freight <span className="text-orange-500">In 30 Seconds</span>
+          <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-slate-900">
+            Instant Kerala Freight <span className="text-orange-600">Estimator</span>
           </h2>
-          <p className="mt-3 text-sm text-slate-300 leading-relaxed">
-            Select your pickup district, destination, and vehicle capacity. Get immediate transparent estimates and instant dispatch confirmation.
+          <p className="mt-2 text-xs sm:text-sm text-slate-600">
+            Pick your corridor and payload for an upfront rate guide and instant WhatsApp dispatch.
           </p>
         </div>
 
-        {/* Interactive Estimator Box */}
-        <div className="bg-slate-800/80 backdrop-blur-xl border border-slate-700/80 rounded-3xl p-6 sm:p-8 lg:p-10 shadow-2xl">
-          <div className="grid gap-6 lg:grid-cols-12 items-center">
-            {/* Input Controls (7 cols) */}
-            <div className="lg:col-span-7 space-y-6">
-              {/* Pickup & Destination */}
+        {/* Crisp Light Glass Card */}
+        <div className="glass-card rounded-3xl p-6 sm:p-8 lg:p-10 shadow-xl relative">
+          <div className="grid gap-8 lg:grid-cols-12 items-center">
+            {/* Left Inputs (7 cols) */}
+            <div className="lg:col-span-7 space-y-5">
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="block text-xs font-extrabold uppercase tracking-wider text-slate-300 mb-2 flex items-center gap-1.5">
-                    <MapPinIcon className="h-4 w-4 text-emerald-400" />
-                    Pickup District (Origin)
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5 flex items-center gap-1.5">
+                    <MapPinIcon className="h-3.5 w-3.5 text-emerald-600" />
+                    Pickup District
                   </label>
                   <select
                     value={fromDistrict}
                     onChange={(e) => setFromDistrict(e.target.value)}
-                    className="w-full bg-slate-900/90 border border-slate-600 text-white rounded-xl px-4 py-3.5 text-sm font-semibold focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none"
+                    className="w-full bg-slate-50 border border-slate-300 text-slate-900 rounded-2xl px-4 py-3 text-xs sm:text-sm font-semibold focus:ring-2 focus:ring-orange-500 outline-none"
                   >
                     {districtsList.map((d) => (
-                      <option key={d} value={d} className="bg-slate-900 text-white">
+                      <option key={d} value={d} className="bg-white text-slate-900">
                         {d}
                       </option>
                     ))}
@@ -139,17 +131,17 @@ export default function FareEstimator({ content }) {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-extrabold uppercase tracking-wider text-slate-300 mb-2 flex items-center gap-1.5">
-                    <MapPinIcon className="h-4 w-4 text-orange-400" />
-                    Delivery District (Destination)
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-1.5 flex items-center gap-1.5">
+                    <MapPinIcon className="h-3.5 w-3.5 text-orange-600" />
+                    Delivery District
                   </label>
                   <select
                     value={toDistrict}
                     onChange={(e) => setToDistrict(e.target.value)}
-                    className="w-full bg-slate-900/90 border border-slate-600 text-white rounded-xl px-4 py-3.5 text-sm font-semibold focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none"
+                    className="w-full bg-slate-50 border border-slate-300 text-slate-900 rounded-2xl px-4 py-3 text-xs sm:text-sm font-semibold focus:ring-2 focus:ring-orange-500 outline-none"
                   >
                     {districtsList.map((d) => (
-                      <option key={d} value={d} className="bg-slate-900 text-white">
+                      <option key={d} value={d} className="bg-white text-slate-900">
                         {d}
                       </option>
                     ))}
@@ -157,107 +149,73 @@ export default function FareEstimator({ content }) {
                 </div>
               </div>
 
-              {/* Vehicle Selection */}
+              {/* Vehicle Pills */}
               <div>
-                <label className="block text-xs font-extrabold uppercase tracking-wider text-slate-300 mb-2 flex items-center gap-1.5">
-                  <TruckIcon className="h-4 w-4 text-amber-400" />
-                  Select Commercial Vehicle
+                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-2 flex items-center gap-1.5">
+                  <TruckIcon className="h-3.5 w-3.5 text-orange-600" />
+                  Select Vehicle Capacity
                 </label>
-                <div className="grid gap-3 sm:grid-cols-3">
+                <div className="grid gap-2.5 sm:grid-cols-3">
                   {VEHICLES.map((veh, idx) => (
                     <button
                       key={veh.name}
                       type="button"
                       onClick={() => setVehicleIdx(idx)}
-                      className={`text-left p-3.5 rounded-2xl border transition text-xs ${
+                      className={`text-left p-3 rounded-2xl border transition text-xs ${
                         vehicleIdx === idx
-                          ? "bg-orange-600/20 border-orange-500 text-white ring-1 ring-orange-500"
-                          : "bg-slate-900/60 border-slate-700/80 text-slate-300 hover:bg-slate-700/50"
+                          ? "bg-orange-50 border-orange-500 text-slate-900 ring-2 ring-orange-500/30"
+                          : "bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100"
                       }`}
                     >
-                      <span className="block font-black text-sm text-white mb-0.5">{veh.name.split("/")[0]}</span>
-                      <span className="block font-extrabold text-orange-400 text-[11px] mb-1">Cap: {veh.payload}</span>
-                      <span className="block text-[10px] text-slate-400 line-clamp-1">{veh.idealFor}</span>
+                      <span className="block font-bold text-slate-900 mb-0.5">{veh.name.split("/")[0]}</span>
+                      <span className="block font-mono text-orange-600 font-bold text-[11px]">{veh.payload}</span>
                     </button>
                   ))}
                 </div>
               </div>
-
-              {/* Guarantees */}
-              <div className="flex flex-wrap items-center gap-4 text-xs font-semibold text-slate-400 pt-2 border-t border-slate-700/60">
-                <span className="flex items-center gap-1.5">
-                  <ShieldCheckIcon className="h-4 w-4 text-emerald-400" /> No Hidden Toll Charges
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <ShieldCheckIcon className="h-4 w-4 text-emerald-400" /> 100% Waterproof Cover
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <ClockIcon className="h-4 w-4 text-emerald-400" /> Live GPS Tracking
-                </span>
-              </div>
             </div>
 
-            {/* Output Estimate Summary Card (5 cols) */}
-            <div className="lg:col-span-5 bg-gradient-to-br from-slate-950 to-slate-900 border border-slate-700 rounded-2xl p-6 sm:p-7 space-y-5 shadow-xl relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-orange-600/10 rounded-full blur-2xl pointer-events-none" />
-
-              <div className="flex items-center justify-between pb-3 border-b border-slate-800 text-xs">
-                <span className="text-slate-400 font-bold uppercase tracking-wider">Estimated Transit</span>
-                <span className="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 font-black text-[11px]">
-                  Corridor Active
+            {/* Right Output HUD (5 cols) */}
+            <div className="lg:col-span-5 bg-slate-50 border border-slate-200 rounded-2xl p-6 space-y-4 shadow-sm">
+              <div className="flex items-center justify-between text-xs pb-3 border-b border-slate-200">
+                <span className="text-slate-500 font-mono text-[11px] font-bold">CORRIDOR SUMMARY</span>
+                <span className="text-emerald-700 font-bold text-[11px] flex items-center gap-1 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  Live Route
                 </span>
               </div>
 
-              {/* Route Display */}
               <div className="space-y-1">
-                <div className="flex items-center gap-2 text-sm font-bold text-slate-200">
-                  <span className="text-emerald-400">{fromDistrict}</span>
-                  <ArrowRightIcon className="h-4 w-4 text-slate-500 shrink-0" />
-                  <span className="text-orange-400">{toDistrict}</span>
+                <div className="flex items-center gap-2 text-xs sm:text-sm font-bold text-slate-900">
+                  <span className="text-emerald-700">{fromDistrict.split("(")[0]}</span>
+                  <ArrowRightIcon className="h-3.5 w-3.5 text-slate-400" />
+                  <span className="text-orange-700">{toDistrict.split("(")[0]}</span>
                 </div>
-                <div className="flex items-center gap-4 text-xs text-slate-400 mt-2">
-                  <span>
-                    Approx. Distance: <strong className="text-white">{distanceKm} km</strong>
-                  </span>
-                  <span>
-                    Driving ETA: <strong className="text-white">~{estHours} hrs</strong>
-                  </span>
+                <div className="flex items-center gap-4 text-xs font-mono text-slate-600 pt-1">
+                  <span>~{distanceKm} km</span>
+                  <span>Drive: ~{estHours}h</span>
+                  <span className="text-orange-600 font-bold">{turnaroundText}</span>
                 </div>
               </div>
 
-              {/* Turnaround Badge */}
-              <div className="p-3 bg-slate-900/90 rounded-xl border border-slate-800 flex items-center gap-3">
-                <ClockIcon className="h-5 w-5 text-amber-400 shrink-0" />
-                <div>
-                  <span className="block text-[10px] uppercase font-bold text-slate-400">Delivery SLA</span>
-                  <span className="block text-xs font-extrabold text-white">{turnaroundText}</span>
-                </div>
-              </div>
-
-              {/* Tariff Guide */}
-              <div>
-                <span className="block text-[11px] uppercase tracking-wider font-extrabold text-slate-400 mb-1">
+              {/* Price Banner */}
+              <div className="pt-2">
+                <span className="block text-[10px] uppercase font-bold text-slate-500 mb-1">
                   Estimated Tariff Range
                 </span>
-                <div className="flex items-baseline gap-2">
-                  <span className="text-3xl sm:text-4xl font-black text-amber-400">
-                    ₹{minCost.toLocaleString()} - ₹{maxCost.toLocaleString()}
-                  </span>
-                  <span className="text-xs text-slate-400 font-semibold">*indicative</span>
+                <div className="text-2xl sm:text-3xl font-black text-orange-600">
+                  ₹{minCost.toLocaleString()} - ₹{maxCost.toLocaleString()}
                 </div>
-                <p className="text-[10px] text-slate-500 mt-1">
-                  Includes driver, fuel &amp; transit. Actual quote confirmed based on loading specifics.
-                </p>
               </div>
 
-              {/* Book WhatsApp CTA */}
+              {/* Book WhatsApp Action */}
               <a
                 href={`https://wa.me/${company.whatsappNumber}?text=${whatsappMessage}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-2.5 py-3.5 px-4 rounded-xl font-black text-sm bg-orange-600 hover:bg-orange-500 text-white shadow-lg transition transform hover:-translate-y-0.5"
+                className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-bold text-xs bg-orange-600 hover:bg-orange-700 text-white shadow-md shadow-orange-600/20 transition transform hover:scale-105"
               >
-                <ChatBubbleLeftEllipsisIcon className="h-5 w-5" />
+                <ChatBubbleLeftEllipsisIcon className="h-4 w-4" />
                 <span>Confirm Rate on WhatsApp</span>
               </a>
             </div>

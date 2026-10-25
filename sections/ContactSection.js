@@ -7,143 +7,169 @@ import {
   MapPinIcon,
   ClockIcon,
   ChatBubbleLeftRightIcon,
-  PaperAirplaneIcon,
+  ArrowRightIcon,
+  CheckCircleIcon,
 } from "@heroicons/react/24/solid";
 
 export default function ContactSection({ content }) {
   const [pickup, setPickup] = useState("");
   const [drop, setDrop] = useState("");
   const [cargo, setCargo] = useState("");
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
 
   const company = content?.company || {
     phonePrimary: "+918590411061",
     phoneSecondary: "+919847789998",
     email: "oscarlogisticspvr@gmail.com",
     address: "Oscar Logistics Hub, NH 66 Bypass, Kerala, India",
-    operatingHours: "24×7 Dispatch & Support (Mon-Sun)",
+    operatingHours: "24×7 Dispatch & Support",
     whatsappNumber: "918590411061",
   };
 
   const handleWhatsAppSubmit = (e) => {
     e.preventDefault();
     const msg = encodeURIComponent(
-      `Hello Oscar Logistics! New Freight Inquiry:\n• Customer: ${name || "Business Shipper"}\n• Phone: ${phone || "Not specified"}\n• Pickup: ${pickup || "Kerala"}\n• Drop: ${drop || "Kerala"}\n• Cargo/Weight: ${cargo || "General Cargo"}\nPlease share rate & availability.`
+      `Hello Oscar Logistics! New Freight Inquiry:\n• Pickup: ${pickup || "Kerala"}\n• Drop: ${drop || "Kerala"}\n• Cargo/Weight: ${cargo || "General Cargo"}\nPlease share quote & vehicle availability.`
     );
     window.open(`https://wa.me/${company.whatsappNumber}?text=${msg}`, "_blank");
   };
 
-  return (
-    <section id="contact" className="py-16 lg:py-24 bg-slate-900 text-white relative overflow-hidden">
-      <div className="absolute inset-0 bg-navy-pattern opacity-95 pointer-events-none" />
+  const GUARANTEES = [
+    "Direct transit updates via WhatsApp",
+    "Response within 15 minutes",
+    "Upfront transparent pricing",
+    "60-min pickup in major cities",
+  ];
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid gap-12 lg:grid-cols-12 items-center">
-          {/* Left Contact Information (5 cols) */}
-          <div className="lg:col-span-5 space-y-8">
-            <div>
-              <span className="text-xs font-black uppercase tracking-[0.2em] text-orange-400">
-                24×7 Operations Desk
-              </span>
-              <h2 className="mt-2 text-3xl sm:text-4xl font-black text-white tracking-tight">
-                Ready to Move Your <span className="text-orange-500">Business Forward?</span>
-              </h2>
-              <p className="mt-3 text-sm text-slate-300 leading-relaxed">
-                Connect directly with our logistics dispatch coordinator for urgent vehicle placements, contract logistics, and personalized quotes.
-              </p>
+  return (
+    <section id="contact" className="py-24 bg-slate-50 relative overflow-hidden">
+      <div className="absolute inset-0 grid-pattern opacity-60 pointer-events-none" />
+
+      <div className="section-container relative z-10">
+        {/* Header */}
+        <div className="max-w-2xl mx-auto text-center mb-16">
+          <p className="eyebrow mb-3">24×7 Dispatch</p>
+          <h2 className="section-title">
+            Let&apos;s Get Your{" "}
+            <span className="text-gradient">Cargo Moving</span>
+          </h2>
+          <p className="section-subtitle mt-4">
+            Fill in your route below and we&apos;ll respond instantly on WhatsApp with a quote and vehicle availability.
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-5 gap-8 items-start">
+
+          {/* ── Left: Contact Info Panel ── */}
+          <div className="lg:col-span-2 space-y-4">
+            {/* Dark info card */}
+            <div className="bg-slate-900 rounded-2xl p-6 text-white space-y-5">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-widest text-orange-500 mb-1">
+                  Contact Information
+                </p>
+                <p className="text-sm text-slate-400 leading-relaxed">
+                  Our dispatch desk operates around the clock. Reach us by phone, WhatsApp, or email.
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                <a
+                  href={`tel:${company.phonePrimary}`}
+                  className="flex items-start gap-3 group"
+                >
+                  <div className="mt-0.5 h-8 w-8 rounded-lg bg-orange-500/10 flex items-center justify-center shrink-0 group-hover:bg-orange-500/20 transition">
+                    <PhoneIcon className="h-4 w-4 text-orange-400" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Primary</p>
+                    <p className="text-sm font-semibold text-white group-hover:text-orange-400 transition">
+                      {company.phonePrimary}
+                    </p>
+                  </div>
+                </a>
+
+                <a
+                  href={`tel:${company.phoneSecondary}`}
+                  className="flex items-start gap-3 group"
+                >
+                  <div className="mt-0.5 h-8 w-8 rounded-lg bg-white/5 flex items-center justify-center shrink-0 group-hover:bg-white/10 transition">
+                    <PhoneIcon className="h-4 w-4 text-slate-400" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Secondary</p>
+                    <p className="text-sm font-semibold text-white group-hover:text-orange-400 transition">
+                      {company.phoneSecondary}
+                    </p>
+                  </div>
+                </a>
+
+                <a
+                  href={`mailto:${company.email}`}
+                  className="flex items-start gap-3 group"
+                >
+                  <div className="mt-0.5 h-8 w-8 rounded-lg bg-white/5 flex items-center justify-center shrink-0 group-hover:bg-white/10 transition">
+                    <EnvelopeIcon className="h-4 w-4 text-slate-400" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Email</p>
+                    <p className="text-xs font-semibold text-white group-hover:text-orange-400 transition break-all">
+                      {company.email}
+                    </p>
+                  </div>
+                </a>
+
+                <div className="flex items-start gap-3">
+                  <div className="mt-0.5 h-8 w-8 rounded-lg bg-white/5 flex items-center justify-center shrink-0">
+                    <MapPinIcon className="h-4 w-4 text-slate-400" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Location</p>
+                    <p className="text-xs text-slate-300 leading-relaxed">{company.address}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Live hours badge */}
+              <div className="pt-4 border-t border-white/10 flex items-center gap-2">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                </span>
+                <ClockIcon className="h-3.5 w-3.5 text-emerald-400" />
+                <span className="text-xs font-semibold text-emerald-400">{company.operatingHours}</span>
+              </div>
             </div>
 
-            {/* Direct Contact Cards */}
-            <div className="space-y-4">
-              <a
-                href={`tel:${company.phonePrimary}`}
-                className="flex items-center gap-4 p-4 rounded-2xl bg-slate-800/80 border border-slate-700/80 hover:border-orange-500/50 hover:bg-slate-800 transition duration-300 group"
-              >
-                <div className="h-12 w-12 rounded-xl bg-orange-600/20 text-orange-400 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
-                  <PhoneIcon className="h-6 w-6" />
-                </div>
-                <div>
-                  <span className="block text-[11px] uppercase font-bold text-slate-400">Primary Dispatch</span>
-                  <span className="block text-base font-black text-white">{company.phonePrimary}</span>
-                </div>
-              </a>
-
-              <a
-                href={`tel:${company.phoneSecondary}`}
-                className="flex items-center gap-4 p-4 rounded-2xl bg-slate-800/80 border border-slate-700/80 hover:border-orange-500/50 hover:bg-slate-800 transition duration-300 group"
-              >
-                <div className="h-12 w-12 rounded-xl bg-slate-700/50 text-slate-300 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
-                  <PhoneIcon className="h-6 w-6" />
-                </div>
-                <div>
-                  <span className="block text-[11px] uppercase font-bold text-slate-400">Secondary Coordinator</span>
-                  <span className="block text-base font-black text-white">{company.phoneSecondary}</span>
-                </div>
-              </a>
-
-              <a
-                href={`mailto:${company.email}`}
-                className="flex items-center gap-4 p-4 rounded-2xl bg-slate-800/80 border border-slate-700/80 hover:border-orange-500/50 hover:bg-slate-800 transition duration-300 group"
-              >
-                <div className="h-12 w-12 rounded-xl bg-slate-700/50 text-slate-300 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
-                  <EnvelopeIcon className="h-6 w-6" />
-                </div>
-                <div>
-                  <span className="block text-[11px] uppercase font-bold text-slate-400">Official Email</span>
-                  <span className="block text-sm font-black text-white break-all">{company.email}</span>
-                </div>
-              </a>
-
-              <div className="flex items-center gap-4 p-4 rounded-2xl bg-slate-800/40 border border-slate-800 text-xs text-slate-300">
-                <ClockIcon className="h-5 w-5 text-amber-400 shrink-0" />
-                <span>{company.operatingHours}</span>
-              </div>
+            {/* Guarantees card */}
+            <div className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
+              <p className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-4">
+                Our Commitments
+              </p>
+              <ul className="space-y-3">
+                {GUARANTEES.map((g) => (
+                  <li key={g} className="flex items-center gap-3 text-sm text-slate-700">
+                    <CheckCircleIcon className="h-4 w-4 text-emerald-500 shrink-0" />
+                    {g}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
 
-          {/* Right Direct Quote Form (7 cols) */}
-          <div className="lg:col-span-7">
-            <div className="rounded-3xl border border-slate-700 bg-slate-950/90 backdrop-blur-xl p-6 sm:p-8 shadow-2xl">
-              <h3 className="text-xl font-black text-white">Instant Transport Quotation Form</h3>
-              <p className="text-xs text-slate-400 mt-1">
-                Fill details below to send an instant pre-formatted booking request to our dispatch manager.
-              </p>
+          {/* ── Right: Quote Form ── */}
+          <div className="lg:col-span-3">
+            <div className="bg-white rounded-2xl p-8 border border-slate-100 shadow-xl shadow-slate-200/40">
+              <div className="mb-7">
+                <h3 className="text-xl font-bold text-slate-900">Get an Instant WhatsApp Quote</h3>
+                <p className="text-sm text-slate-500 mt-1">
+                  Takes 30 seconds. We respond within minutes with pricing and availability.
+                </p>
+              </div>
 
-              <form onSubmit={handleWhatsAppSubmit} className="mt-6 space-y-4">
-                <div className="grid gap-4 sm:grid-cols-2">
+              <form onSubmit={handleWhatsAppSubmit} className="space-y-5">
+                <div className="grid sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1.5">
-                      Your Name / Company
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      placeholder="e.g. Rahul / ABC Traders"
-                      className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:ring-2 focus:ring-orange-500 outline-none"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1.5">
-                      Phone Number
-                    </label>
-                    <input
-                      type="tel"
-                      required
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      placeholder="+91 98765 43210"
-                      className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:ring-2 focus:ring-orange-500 outline-none font-mono"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1.5">
+                    <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
                       Pickup Location
                     </label>
                     <input
@@ -152,13 +178,12 @@ export default function ContactSection({ content }) {
                       value={pickup}
                       onChange={(e) => setPickup(e.target.value)}
                       placeholder="e.g. Edappally, Kochi"
-                      className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:ring-2 focus:ring-orange-500 outline-none"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:border-orange-400 focus:bg-white transition"
                     />
                   </div>
-
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1.5">
-                      Delivery Destination
+                    <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
+                      Destination
                     </label>
                     <input
                       type="text"
@@ -166,37 +191,61 @@ export default function ContactSection({ content }) {
                       value={drop}
                       onChange={(e) => setDrop(e.target.value)}
                       placeholder="e.g. Palayam, Kozhikode"
-                      className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:ring-2 focus:ring-orange-500 outline-none"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:border-orange-400 focus:bg-white transition"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1.5">
-                    Cargo Details &amp; Weight (Tons / Cartons)
+                  <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">
+                    Cargo Details / Weight
                   </label>
                   <input
                     type="text"
                     value={cargo}
                     onChange={(e) => setCargo(e.target.value)}
-                    placeholder="e.g. 1.2 Tons electrical equipment / 40 cartons"
-                    className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:ring-2 focus:ring-orange-500 outline-none"
+                    placeholder="e.g. 1.2 Ton retail boxes, 50 cartons, furniture"
+                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:border-orange-400 focus:bg-white transition"
                   />
                 </div>
 
-                <div className="pt-2">
+                {/* Divider */}
+                <div className="border-t border-slate-100 pt-2" />
+
+                {/* Quick call option */}
+                <div className="flex flex-col sm:flex-row gap-3">
                   <button
                     type="submit"
-                    className="w-full flex items-center justify-center gap-2.5 py-4 px-6 rounded-xl font-black text-sm bg-orange-600 hover:bg-orange-500 text-white shadow-xl transition transform hover:-translate-y-0.5"
+                    className="flex-1 flex items-center justify-center gap-2 py-4 px-5 rounded-xl font-bold text-sm bg-orange-500 hover:bg-orange-600 text-white shadow-lg shadow-orange-500/25 transition-all hover:scale-[1.02]"
                   >
-                    <ChatBubbleLeftRightIcon className="h-5 w-5" />
-                    <span>Send Quote Request on WhatsApp</span>
+                    <ChatBubbleLeftRightIcon className="h-4 w-4" />
+                    Send on WhatsApp
                   </button>
-                  <p className="text-center text-[11px] text-slate-400 mt-2">
-                    Instant response • Dispatch team confirms within 10 minutes
-                  </p>
+                  <a
+                    href={`tel:${company.phonePrimary}`}
+                    className="flex items-center justify-center gap-2 py-4 px-5 rounded-xl font-bold text-sm bg-slate-900 hover:bg-slate-800 text-white transition-all hover:scale-[1.02]"
+                  >
+                    <PhoneIcon className="h-4 w-4" />
+                    Call Now
+                  </a>
                 </div>
+
+                <p className="text-xs text-slate-400 text-center">
+                  Opens WhatsApp with your details pre-filled — no apps or sign-up needed.
+                </p>
               </form>
+            </div>
+
+            {/* Map-style decorative strip */}
+            <div className="mt-4 rounded-2xl overflow-hidden border border-slate-100 shadow-sm h-20 bg-gradient-to-r from-slate-100 via-orange-50 to-slate-100 flex items-center justify-center">
+              <div className="flex items-center gap-3 text-sm text-slate-500">
+                <MapPinIcon className="h-4 w-4 text-orange-500" />
+                <span className="font-medium">Serving all 14 districts of Kerala</span>
+                <ArrowRightIcon className="h-4 w-4 text-slate-400" />
+                <a href="#coverage" className="text-orange-600 font-bold hover:underline text-xs">
+                  View coverage map
+                </a>
+              </div>
             </div>
           </div>
         </div>

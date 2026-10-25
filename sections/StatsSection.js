@@ -1,30 +1,37 @@
 export default function StatsSection({ content }) {
   const stats = content?.stats || [
-    { value: "25+", label: "Modern Commercial Fleet", subtext: "Tata Intra, Dosth & 407s" },
-    { value: "14", label: "Kerala Districts Covered", subtext: "100% pin code accessibility" },
-    { value: "99.2%", label: "On-Time Dispatch Rate", subtext: "GPS monitored corridors" },
-    { value: "1,200+", label: "Happy Business Clients", subtext: "Retail, FMCG & Wholesale" },
+    { value: "25+", label: "Commercial Fleet", subtext: "Tata Intra & Dosth" },
+    { value: "14", label: "Kerala Districts", subtext: "100% Coverage" },
+    { value: "99.2%", label: "On-Time Dispatch", subtext: "Express Transit" },
+    { value: "1,200+", label: "Shippers Served", subtext: "Retail & Wholesale" },
   ];
 
   return (
-    <section className="bg-slate-950 border-y border-slate-800/80 py-10 lg:py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+    <section className="relative py-14 bg-slate-900 overflow-hidden">
+      {/* grid pattern on dark */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px)",
+          backgroundSize: "40px 40px",
+        }}
+      />
+      {/* Glow */}
+      <div className="absolute inset-0 bg-gradient-to-r from-orange-950/30 via-transparent to-orange-950/30 pointer-events-none" />
+
+      <div className="section-container relative z-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {stats.map((stat, idx) => (
-            <div
-              key={idx}
-              className="text-center p-4 rounded-2xl bg-slate-900/60 border border-slate-800/60 hover:border-orange-500/40 transition duration-300"
-            >
-              <div className="text-3xl sm:text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-400">
+            <div key={idx} className="space-y-1 group">
+              <div className="text-4xl sm:text-5xl font-black text-orange-500 tabular-nums group-hover:scale-110 transition-transform duration-300">
                 {stat.value}
               </div>
-              <div className="mt-1.5 text-xs sm:text-sm font-black text-white uppercase tracking-wider">
+              <div className="text-sm font-bold text-white uppercase tracking-wide">
                 {stat.label}
               </div>
               {stat.subtext && (
-                <div className="mt-1 text-[11px] text-slate-400 font-medium">
-                  {stat.subtext}
-                </div>
+                <div className="text-xs text-slate-500">{stat.subtext}</div>
               )}
             </div>
           ))}

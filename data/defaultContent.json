@@ -1,4 +1,14 @@
 {
+  "logo": {
+    "type": "text",
+    "imageUrl": "",
+    "text": "OSCAR",
+    "tagline": "LOGISTICS",
+    "badgeLetter": "O",
+    "height": 42,
+    "badgeColor": "#f59e0b",
+    "badgeBg": "#071120"
+  },
   "company": {
     "name": "Oscar Logistics",
     "legalName": "Oscar Logistics India Pvt Ltd",
@@ -35,8 +45,8 @@
     "eyebrow": "Kerala's Trusted Freight Network",
     "headline": "Reliable Logistics That Keep",
     "headlineHighlight": "Kerala Moving Fast.",
-    "description": "From express parcel delivery to dedicated full truckloads, Oscar Logistics delivers precision, GPS-tracked freight handling across all 14 districts of Kerala—on time, every time.",
-    "bannerPill": "⚡ 24×7 Operations • Live GPS Tracking • 100% Safe Handling",
+    "description": "From express parcel delivery to dedicated full truckloads, Oscar Logistics delivers precision, dependable freight handling across all 14 districts of Kerala—on time, every time.",
+    "bannerPill": "24×7 Operations • Scheduled Transit • 100% Safe Handling",
     "activeCorridorText": "Kochi ➔ Kozhikode ➔ Trivandrum Express Corridors Active",
     "ctaQuoteText": "Calculate Rate & Book",
     "ctaCallText": "Call Dispatch Desk"
@@ -55,7 +65,7 @@
     {
       "value": "99.2%",
       "label": "On-Time Dispatch Rate",
-      "subtext": "GPS monitored corridors"
+      "subtext": "Monitored express corridors"
     },
     {
       "value": "1,200+",
@@ -72,7 +82,7 @@
       "features": [
         "Exclusive vehicle assigned strictly to your cargo",
         "Direct point-to-point transport with zero transshipment",
-        "Live satellite GPS link shared with client",
+        "Direct transit updates shared via WhatsApp",
         "Customized multi-stop distribution available"
       ]
     },
@@ -121,7 +131,8 @@
       "payload": "1.0 - 1.2 Ton",
       "volume": "180 cu.ft",
       "ideal": "City retail distribution, fast FMCG delivery, parcel drop-offs",
-      "tag": "City Express"
+      "tag": "City Express",
+      "image": "/vehicles/intra-v30.jpg"
     },
     {
       "id": "intra-88",
@@ -130,7 +141,8 @@
       "payload": "1.3 - 1.5 Ton",
       "volume": "220 cu.ft",
       "ideal": "General cargo, furniture, wholesale appliances & industrial boxes",
-      "tag": "Most Versatile"
+      "tag": "Most Versatile",
+      "image": "/vehicles/intra-lwb.jpg"
     },
     {
       "id": "dosth-92",
@@ -139,7 +151,8 @@
       "payload": "1.5 - 1.8 Ton",
       "volume": "260 cu.ft",
       "ideal": "High volume packages, textile cartons, consumer electronics",
-      "tag": "High Torque"
+      "tag": "High Torque",
+      "image": "/vehicles/dosth-highdeck.jpg"
     },
     {
       "id": "dosth-108",
@@ -148,7 +161,8 @@
       "payload": "2.0 Ton",
       "volume": "320 cu.ft",
       "ideal": "Weather-sealed protection for FMCG, pharmaceuticals & e-commerce",
-      "tag": "Weatherproof"
+      "tag": "Weatherproof",
+      "image": "/vehicles/dosth-container.jpg"
     },
     {
       "id": "tata-407",
@@ -157,15 +171,16 @@
       "payload": "3.0 - 3.5 Ton",
       "volume": "480 cu.ft",
       "ideal": "Heavy machinery parts, construction hardware, agricultural loads",
-      "tag": "Heavy Hauler"
+      "tag": "Heavy Hauler",
+      "image": "/vehicles/tata-407.jpg"
     }
   ],
   "whyUs": [
     {
-      "id": "gps",
-      "title": "Real-Time GPS Tracking",
-      "description": "Every vehicle in our fleet is fitted with telematics hardware so you get exact real-time milestone updates.",
-      "stat": "100% Tracked"
+      "id": "direct",
+      "title": "Direct Point-to-Point Transit",
+      "description": "Direct vehicle dispatch from your pickup to destination with zero transshipment or intermediate delay.",
+      "stat": "Direct Dispatch"
     },
     {
       "id": "drivers",
@@ -227,7 +242,7 @@
       "name": "Biju Mathew",
       "company": "Kottayam Agro Commodities",
       "rating": 5,
-      "comment": "The GPS tracking and direct WhatsApp updates give our management total peace of mind. Truly dependable transport partner in Kerala."
+      "comment": "The regular transit checkpoints and direct WhatsApp updates give our management total peace of mind. Truly dependable transport partner in Kerala."
     },
     {
       "id": "3",
@@ -246,9 +261,9 @@
     },
     {
       "id": "faq-2",
-      "category": "Tracking",
-      "question": "How can I track the exact location of my cargo in transit?",
-      "answer": "Every vehicle in our fleet is fitted with satellite GPS telematics. Once your consignment is dispatched, our 24×7 dispatch desk shares a live tracking link and automated WhatsApp transit checkpoints until delivery."
+      "category": "Dispatch",
+      "question": "How do I get status updates on my consignment in transit?",
+      "answer": "Once your cargo is dispatched, our 24×7 dispatch desk coordinates directly with you via call and WhatsApp, sharing departure, checkpoint, and arrival updates right up to delivery."
     },
     {
       "id": "faq-3",
