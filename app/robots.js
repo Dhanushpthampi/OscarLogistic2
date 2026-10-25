@@ -1,1 +1,12 @@
-export default function robots() { return { rules: { userAgent: "*", allow: "/" }, sitemap: "https://www.oscarlogistics.in/sitemap.xml" }; }
+export default function robots() {
+  return {
+    rules: [
+      {
+        userAgent: "*",
+        allow: "/",
+        disallow: ["/admin", "/api/"],
+      },
+    ],
+    sitemap: "https://www.oscarlogistics.in/sitemap.xml",
+  };
+}

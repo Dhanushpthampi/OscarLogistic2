@@ -2,10 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
-html { scroll-behavior: smooth; }
-body { @apply bg-white text-slate-800 antialiased; }
-::selection { @apply bg-orange text-white; }
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased selection:bg-orange selection:text-white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+}
+
+/* Backward-compatible utility classes */
 .section { @apply mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:py-24; }
 .eyebrow { @apply text-sm font-extrabold uppercase tracking-[.18em] text-orange; }
 .heading { @apply mt-3 font-black tracking-tight text-navy; }
-.grid-pattern { background-image: linear-gradient(rgba(6,29,67,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(6,29,67,.05) 1px, transparent 1px); background-size: 34px 34px; }
+.grid-pattern {
+  background-image: linear-gradient(rgba(6, 29, 67, 0.05) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(6, 29, 67, 0.05) 1px, transparent 1px);
+  background-size: 34px 34px;
+}
+
+/* Custom Gradients & Logistics Tech Patterns */
+.bg-navy-pattern {
+  background-color: #071120;
+  background-image: radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.12) 0%, transparent 50%),
+                    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 100% 100%, 32px 32px, 32px 32px;
+}
+
+.bg-dot-pattern {
+  background-image: radial-gradient(rgba(15, 23, 42, 0.1) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+}
+
+/* Subtle glow effects */
+.glow-amber {
+  box-shadow: 0 0 40px -10px rgba(245, 158, 11, 0.35);
+}
+
+.glow-navy {
+  box-shadow: 0 20px 50px -15px rgba(7, 17, 32, 0.25);
+}
+
+@keyframes live-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.9); }
+}
+
+.animate-live {
+  animation: live-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

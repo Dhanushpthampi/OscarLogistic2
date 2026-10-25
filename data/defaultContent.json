@@ -1,0 +1,278 @@
+{
+  "company": {
+    "name": "Oscar Logistics",
+    "legalName": "Oscar Logistics India Pvt Ltd",
+    "tagline": "Logistics that keep Kerala moving.",
+    "subTagline": "Kerala's Premier Goods Transport, FTL, PTL & Express Freight Partner",
+    "phonePrimary": "+918590411061",
+    "phoneSecondary": "+919847789998",
+    "email": "oscarlogisticspvr@gmail.com",
+    "address": "Oscar Logistics Hub, NH 66 Bypass, Kerala, India",
+    "operatingHours": "24×7 Dispatch & Support (Mon-Sun)",
+    "whatsappNumber": "918590411061",
+    "foundedYear": "2018",
+    "activeTrucks": "25+",
+    "citiesCovered": "14 Districts"
+  },
+  "seo": {
+    "siteUrl": "https://www.oscarlogistics.in",
+    "title": "Oscar Logistics | Kerala Transport & Freight Logistics Solutions",
+    "description": "Leading goods transport and logistics company in Kerala. Dedicated Full Truck Load (FTL), Part Truck Load (PTL), Express Cargo, and Fleet Hire across all 14 Kerala districts.",
+    "keywords": [
+      "Kerala logistics company",
+      "Kerala transport service",
+      "truck rental Kerala",
+      "express delivery Kerala",
+      "goods transport Kochi",
+      "FTL transport Kozhikode",
+      "goods carrier Trivandrum",
+      "Tata Intra hire Kerala",
+      "Ashok Leyland Dosth rental Kerala",
+      "Oscar Logistics"
+    ]
+  },
+  "hero": {
+    "eyebrow": "Kerala's Trusted Freight Network",
+    "headline": "Reliable Logistics That Keep",
+    "headlineHighlight": "Kerala Moving Fast.",
+    "description": "From express parcel delivery to dedicated full truckloads, Oscar Logistics delivers precision, GPS-tracked freight handling across all 14 districts of Kerala—on time, every time.",
+    "bannerPill": "⚡ 24×7 Operations • Live GPS Tracking • 100% Safe Handling",
+    "activeCorridorText": "Kochi ➔ Kozhikode ➔ Trivandrum Express Corridors Active",
+    "ctaQuoteText": "Calculate Rate & Book",
+    "ctaCallText": "Call Dispatch Desk"
+  },
+  "stats": [
+    {
+      "value": "25+",
+      "label": "Modern Commercial Fleet",
+      "subtext": "Tata Intra, Dosth & 407s"
+    },
+    {
+      "value": "14",
+      "label": "Kerala Districts Covered",
+      "subtext": "100% pin code accessibility"
+    },
+    {
+      "value": "99.2%",
+      "label": "On-Time Dispatch Rate",
+      "subtext": "GPS monitored corridors"
+    },
+    {
+      "value": "1,200+",
+      "label": "Happy Business Clients",
+      "subtext": "Retail, FMCG & Wholesale"
+    }
+  ],
+  "services": [
+    {
+      "id": "ftl",
+      "title": "Full Truck Load (FTL)",
+      "badge": "Popular for B2B",
+      "shortDesc": "Dedicated exclusive vehicles for bulk cargo, corporate supply chain, and point-to-point shipments.",
+      "features": [
+        "Exclusive vehicle assigned strictly to your cargo",
+        "Direct point-to-point transport with zero transshipment",
+        "Live satellite GPS link shared with client",
+        "Customized multi-stop distribution available"
+      ]
+    },
+    {
+      "id": "ptl",
+      "title": "Part Truck Load (PTL)",
+      "badge": "Cost Efficient",
+      "shortDesc": "Economical shared freight for small-to-mid sized shipments across Kerala with consolidated routes.",
+      "features": [
+        "Pay strictly for the weight and volume you consume",
+        "Daily scheduled departures across all major hubs",
+        "Barcoded carton tracking and proof of delivery",
+        "Ideal for distributors, e-commerce, and manufacturers"
+      ]
+    },
+    {
+      "id": "express",
+      "title": "Express Cargo & Same-Day",
+      "badge": "High Priority",
+      "shortDesc": "Urgent, time-critical transportation for perishable items, spare parts, and urgent business stock.",
+      "features": [
+        "Same-day delivery across adjacent Kerala districts",
+        "Priority dispatch within 60 minutes of booking",
+        "Dedicated dispatch coordinator assigned",
+        "Doorstep pickup & direct handoff"
+      ]
+    },
+    {
+      "id": "warehouse",
+      "title": "Warehousing & Hub Storage",
+      "badge": "Safe Storage",
+      "shortDesc": "Secure short-term transit storage and cross-docking facilities located along primary Kerala highway routes.",
+      "features": [
+        "CCTV-monitored fire-safe storage spaces",
+        "Quick loading, palletizing, and transshipment handling",
+        "Inventory reconciliation and packing services",
+        "Flexible daily, weekly, and monthly storage options"
+      ]
+    }
+  ],
+  "fleet": [
+    {
+      "id": "intra-82",
+      "size": "8.2 FT Deck",
+      "vehicle": "Tata Intra V30 / V50",
+      "payload": "1.0 - 1.2 Ton",
+      "volume": "180 cu.ft",
+      "ideal": "City retail distribution, fast FMCG delivery, parcel drop-offs",
+      "tag": "City Express"
+    },
+    {
+      "id": "intra-88",
+      "size": "8.8 FT Deck",
+      "vehicle": "Tata Intra Long Wheelbase",
+      "payload": "1.3 - 1.5 Ton",
+      "volume": "220 cu.ft",
+      "ideal": "General cargo, furniture, wholesale appliances & industrial boxes",
+      "tag": "Most Versatile"
+    },
+    {
+      "id": "dosth-92",
+      "size": "9.2 FT High-Deck",
+      "vehicle": "Ashok Leyland Dosth +",
+      "payload": "1.5 - 1.8 Ton",
+      "volume": "260 cu.ft",
+      "ideal": "High volume packages, textile cartons, consumer electronics",
+      "tag": "High Torque"
+    },
+    {
+      "id": "dosth-108",
+      "size": "10.8 FT Closed Container",
+      "vehicle": "Ashok Leyland Dosth Container",
+      "payload": "2.0 Ton",
+      "volume": "320 cu.ft",
+      "ideal": "Weather-sealed protection for FMCG, pharmaceuticals & e-commerce",
+      "tag": "Weatherproof"
+    },
+    {
+      "id": "tata-407",
+      "size": "12.0 FT Heavy Deck",
+      "vehicle": "Tata 407 Gold LCV",
+      "payload": "3.0 - 3.5 Ton",
+      "volume": "480 cu.ft",
+      "ideal": "Heavy machinery parts, construction hardware, agricultural loads",
+      "tag": "Heavy Hauler"
+    }
+  ],
+  "whyUs": [
+    {
+      "id": "gps",
+      "title": "Real-Time GPS Tracking",
+      "description": "Every vehicle in our fleet is fitted with telematics hardware so you get exact real-time milestone updates.",
+      "stat": "100% Tracked"
+    },
+    {
+      "id": "drivers",
+      "title": "Certified Professional Drivers",
+      "description": "Background-verified, disciplined drivers trained in defensive driving, hill routes, and careful goods handling.",
+      "stat": "5+ Yrs Avg Exp"
+    },
+    {
+      "id": "pricing",
+      "title": "Transparent No-Surprise Pricing",
+      "description": "Clear tariff calculations based on actual weight, vehicle type, and mileage with zero hidden toll surprises.",
+      "stat": "Zero Hidden Fees"
+    },
+    {
+      "id": "speed",
+      "title": "Express Transit Corridors",
+      "description": "Optimized highway routing across NH 66 and MC Road ensures minimum transit hours between North and South Kerala.",
+      "stat": "Fast Turnaround"
+    },
+    {
+      "id": "support",
+      "title": "24×7 Local Dispatch Desk",
+      "description": "Speak with a dedicated logistics coordinator in Malayalam, English, or Hindi at any time of day or night.",
+      "stat": "Always On"
+    },
+    {
+      "id": "safety",
+      "title": "Cargo Safety & Weather Protection",
+      "description": "All open-body trucks are equipped with heavy industrial tarpaulins and lashing belts to protect during monsoon.",
+      "stat": "Zero Damage Goal"
+    }
+  ],
+  "districts": [
+    { "name": "Ernakulam (Kochi)", "hub": "Central Hub", "deliveryTime": "Immediate / Same Day", "zone": "Central Kerala" },
+    { "name": "Thrissur", "hub": "Cultural Corridor Hub", "deliveryTime": "Same Day", "zone": "Central Kerala" },
+    { "name": "Kozhikode", "hub": "Malabar Regional Hub", "deliveryTime": "Same Day / Overnight", "zone": "North Kerala" },
+    { "name": "Thiruvananthapuram", "hub": "Capital Hub", "deliveryTime": "Same Day / Overnight", "zone": "South Kerala" },
+    { "name": "Palakkad", "hub": "Gateway Logistics Hub", "deliveryTime": "Same Day", "zone": "Central Kerala" },
+    { "name": "Malappuram", "hub": "Transit Facility", "deliveryTime": "Same Day", "zone": "North Kerala" },
+    { "name": "Kannur", "hub": "North Coast Hub", "deliveryTime": "Next Morning", "zone": "North Kerala" },
+    { "name": "Kottayam", "hub": "Highland Corridor", "deliveryTime": "Same Day", "zone": "Central Kerala" },
+    { "name": "Alappuzha", "hub": "Coastal Network", "deliveryTime": "Same Day", "zone": "South Kerala" },
+    { "name": "Kollam", "hub": "South Coastal Hub", "deliveryTime": "Same Day", "zone": "South Kerala" },
+    { "name": "Pathanamthitta", "hub": "Regional Distribution", "deliveryTime": "Next Morning", "zone": "South Kerala" },
+    { "name": "Idukki", "hub": "High-Range Specialized", "deliveryTime": "Next Morning", "zone": "Central Kerala" },
+    { "name": "Wayanad", "hub": "Ghat Route Network", "deliveryTime": "Next Morning", "zone": "North Kerala" },
+    { "name": "Kasaragod", "hub": "Northern Border Hub", "deliveryTime": "24 - 36 Hours", "zone": "North Kerala" }
+  ],
+  "testimonials": [
+    {
+      "id": "1",
+      "name": "Arun Varma",
+      "company": "Malabar Tiles & Ceramics, Kozhikode",
+      "rating": 5,
+      "comment": "Oscar Logistics has been moving our heavy tile consignments across Ernakulam and Thrissur with zero transit breakage. Their drivers are punctual and courteous."
+    },
+    {
+      "id": "2",
+      "name": "Biju Mathew",
+      "company": "Kottayam Agro Commodities",
+      "rating": 5,
+      "comment": "The GPS tracking and direct WhatsApp updates give our management total peace of mind. Truly dependable transport partner in Kerala."
+    },
+    {
+      "id": "3",
+      "name": "Nandakumar S.",
+      "company": "Apex Electricals, Kochi",
+      "rating": 5,
+      "comment": "Whenever we have emergency spare shipments that must reach Trivandrum or Kannur on the same day, Oscar Logistics delivers without excuses."
+    }
+  ],
+  "faqs": [
+    {
+      "id": "faq-1",
+      "category": "Coverage",
+      "question": "What geographic areas in Kerala does Oscar Logistics cover?",
+      "answer": "We provide end-to-end transport and logistics coverage across all 14 revenue districts of Kerala—from Kasaragod in the north to Thiruvananthapuram in the south, including high-range routes in Idukki and Wayanad."
+    },
+    {
+      "id": "faq-2",
+      "category": "Tracking",
+      "question": "How can I track the exact location of my cargo in transit?",
+      "answer": "Every vehicle in our fleet is fitted with satellite GPS telematics. Once your consignment is dispatched, our 24×7 dispatch desk shares a live tracking link and automated WhatsApp transit checkpoints until delivery."
+    },
+    {
+      "id": "faq-3",
+      "category": "Pricing",
+      "question": "How are freight rates calculated?",
+      "answer": "Rates are calculated based on origin, destination distance (km), vehicle payload capacity (e.g. Tata Intra vs 407), and cargo nature. We provide upfront, transparent quotations with zero hidden fuel surcharges or surprise tolls."
+    },
+    {
+      "id": "faq-4",
+      "category": "Services",
+      "question": "Do you provide both Full Truck Load (FTL) and Part Truck Load (PTL)?",
+      "answer": "Yes! Whether you need a dedicated truck strictly for your goods (FTL) or want to save money by sharing space for a few cartons or pallets (PTL), we have dedicated scheduled operations for both."
+    },
+    {
+      "id": "faq-5",
+      "category": "Safety",
+      "question": "How do you protect cargo from monsoon rains and road bumps in Kerala?",
+      "answer": "All our vehicles carry triple-layer heavy waterproof industrial tarpaulins, rubberized edge protectors, and ratcheted cargo lashing belts to guarantee zero moisture ingress and zero shifting."
+    },
+    {
+      "id": "faq-6",
+      "category": "Booking",
+      "question": "How fast can I get a truck dispatched for immediate pickup?",
+      "answer": "For urgent express bookings within major logistics clusters like Kochi, Thrissur, and Kozhikode, our trucks can arrive at your warehouse or shop floor within 60 to 90 minutes of confirmation."
+    }
+  ]
+}
